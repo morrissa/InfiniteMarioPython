@@ -1,3 +1,10 @@
+import os
+import time
+
+os.environ["KMP_DUPLICATE_LIB_OK"]="TRUE"
+
+
+
 import numpy
 import random
 import sys
@@ -16,7 +23,7 @@ class MichaelAgent(MarioAgent):
         corresponding Java ForwardAgent.
     """
 
-    use_gpu = True
+    use_gpu = False
     demoSavedNet = False
     savedNet = 'mario_4400000.chk'
 
@@ -176,6 +183,7 @@ class MichaelAgent(MarioAgent):
         """ Possible analysis of current observation and sending an action back
         """
         self.stepsSinceNewAction += 1
+        time.sleep(5)
         
         extra_info = numpy.zeros((self.extra_info_size), dtype=numpy.float32)
 

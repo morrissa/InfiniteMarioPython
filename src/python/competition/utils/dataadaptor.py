@@ -2,6 +2,7 @@ __author__ = "Sergey Karakovskiy, sergey at idsia fullstop ch"
 __date__ = "$Apr 30, 2009 1:53:54 PM$"
 
 import numpy
+import time
     
 from utils.bitsTest import powsof2
     
@@ -54,7 +55,6 @@ def extractObservation(data):
     """
      parse the array of strings and return array 22 by 22 of doubles
     """
-
     obsLength = 487
     levelScene = numpy.empty(shape = (22, 22), dtype = numpy.int32)
     enemiesFloats = []
@@ -99,34 +99,58 @@ def extractObservation(data):
                 k += 1
         k += 3
 
-        marioFloats = (float(data[k]), float(data[k + 1]))
-        k += 2       
+        print("this is the data and level scene")
+        print("The value of k is {}".format(k))
+        print("the length of the data is {}".format(len(data)))
+        print(data)
+        print("--------------------")
+        print(levelScene)
 
-        marioMode = int(data[k])
-        k += 1
- 
-        timeLeft = int(data[k])
-        k += 1
+        try:
+            marioFloats = (float(data[k]), float(data[k + 1]))
+            k += 2
 
-        coinsCollected = int(data[k])
-        k += 1
-
-        enemyKills = int(data[k])
-        k += 1
-
-        hasWon = int(data[k])
-        k += 1
-
-        xa = float(data[k])
-        k += 1
-
-        ya = float(data[k])
-        k += 1
-
-        while k < len(data):
-            enemiesFloats.append(float(data[k]))
+            marioMode = int(float(data[k]))
             k += 1
-         
+ 
+            timeLeft = int(float(data[k]))
+            k += 1
+
+            coinsCollected = int(float(data[k]))
+            k += 1
+
+            print("The value of k is {}".format(k))
+            print("the length of the data is {}".format(len(data)))
+
+            enemyKills = int(float(data[k]))
+            k += 1
+
+            hasWon = int(float(data[k]))
+            k += 1
+
+            print("The value of k is {}".format(k))
+            print("the length of the data is {}".format(len(data)))
+
+            xa = float(data[k])
+            k += 1
+
+            ya = float(data[k])
+            k += 1
+
+            while k < len(data):
+                enemiesFloats.append(float(data[k]))
+                k += 1
+        except:
+            marioFloats = 0
+            marioMode =0
+            timeLeft =0
+            coinsCollected =0
+            enemyKills =0
+            hasWon =0
+            xa =0
+            ya =0
+            enemiesFloats =0
+
 #        for i in range(22):
 #            for j in range(22):
 #               if levelScene[i, j] != 0:
