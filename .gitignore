@@ -3,7 +3,10 @@ classes
 
 *.pyc
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> b1e91a6e8ac4a9c59c584e1113cdadc2ff826fea
 # Log file
 *.log
 
